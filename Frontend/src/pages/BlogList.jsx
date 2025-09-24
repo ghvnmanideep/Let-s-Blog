@@ -13,12 +13,13 @@ export default function BlogList() {
   const isAuthenticated = Boolean(localStorage.getItem('token'));
 
   const fetchBlogs = (page = 1) => {
-    axios.get(`${import.meta.env.VITE_API_URL}/api/blogs?page=${page}`)
+    axios.get(`${import.meta.env.VITE_API_URL}api/blogs?page=${page}`)
       .then(res => {
         setBlogs(res.data.blogs);
         setTotalBlogs(res.data.totalBlogs);
         setError('');
       })
+      
       .catch(err => {
         setError('Failed to load blogs');
         console.error(err);
