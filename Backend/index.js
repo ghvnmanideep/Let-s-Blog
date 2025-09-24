@@ -16,7 +16,7 @@ connectDB();
 // ✅ Configure CORS correctly
 const allowedOrigins = [
   "http://localhost:5173",               // local dev
-  "https://let-s-blog-kappa.vercel.app", // your deployed frontend
+  "https://letsblog-hq27.onrender.com", // your deployed frontend
 ];
 
 app.use(
