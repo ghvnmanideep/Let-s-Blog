@@ -17,6 +17,7 @@ export default function BlogList() {
       .then(res => {
         setBlogs(res.data.blogs);
         setTotalBlogs(res.data.totalBlogs);
+        setError('');
       })
       .catch(err => {
         setError('Failed to load blogs');
@@ -42,8 +43,12 @@ export default function BlogList() {
   const totalPages = Math.ceil(totalBlogs / blogsPerPage);
 
   const goToPage = pageNumber => setCurrentPage(pageNumber);
-  const goToNextPage = () => { if (currentPage < totalPages) setCurrentPage(prev => prev + 1); };
-  const goToPrevPage = () => { if (currentPage > 1) setCurrentPage(prev => prev - 1); };
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(prev => prev + 1);
+  };
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage(prev => prev - 1);
+  };
 
   return (
     <div className="w-screen min-h-screen bg-black text-white flex flex-col">
@@ -78,8 +83,14 @@ export default function BlogList() {
           {/* Blog Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogs.map(blog => (
-              <div key={blog._id} className="p-8 bg-gray-900 border border-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2">
-                <Link to={`/blogs/${blog._id}`} className="text-2xl font-semibold text-yellow-400 hover:text-yellow-300 hover:underline transition">
+              <div
+                key={blog._id}
+                className="p-8 bg-gray-900 border border-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2"
+              >
+                <Link
+                  to={`/blogs/${blog._id}`}
+                  className="text-2xl font-semibold text-yellow-400 hover:text-yellow-300 hover:underline transition"
+                >
                   {blog.title}
                 </Link>
                 <p className="mt-4 italic text-gray-400">
@@ -87,7 +98,10 @@ export default function BlogList() {
                   <span className="mx-2 text-gray-500">&bull;</span>
                   <span className="text-gray-500">{new Date(blog.createdAt).toLocaleDateString()}</span>
                 </p>
-                <p className="mt-6 text-white overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>
+                <p
+                  className="mt-6 text-white overflow-hidden"
+                  style={{ display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}
+                >
                   {blog.content}
                 </p>
               </div>
@@ -99,11 +113,41 @@ export default function BlogList() {
       {/* Pagination */}
       {totalPages > 1 && (
         <footer className="flex justify-center items-center py-6 bg-gray-900 space-x-2 flex-wrap">
-          <button onClick={goToPrevPage} disabled={currentPage === 1} className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${currentPage===1 ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-black text-white hover:bg-yellow-400 hover:text-black'}`}>Prev</button>
+          <button
+            onClick={goToPrevPage}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${
+              currentPage === 1
+                ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                : 'bg-black text-white hover:bg-yellow-400 hover:text-black'
+            }`}
+          >
+            Prev
+          </button>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-            <button key={page} onClick={() => goToPage(page)} className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${currentPage===page ? 'bg-yellow-400 text-black' : 'bg-black text-white hover:bg-yellow-400 hover:text-black'}`}>{page}</button>
+            <button
+              key={page}
+              onClick={() => goToPage(page)}
+              className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${
+                currentPage === page
+                  ? 'bg-yellow-400 text-black'
+                  : 'bg-black text-white hover:bg-yellow-400 hover:text-black'
+              }`}
+            >
+              {page}
+            </button>
           ))}
-          <button onClick={goToNextPage} disabled={currentPage === totalPages} className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${currentPage===totalPages ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-black text-white hover:bg-yellow-400 hover:text-black'}`}>Next</button>
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded font-semibold border-2 border-yellow-400 transition ${
+              currentPage === totalPages
+                ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                : 'bg-black text-white hover:bg-yellow-400 hover:text-black'
+            }`}
+          >
+            Next
+          </button>
         </footer>
       )}
     </div>
