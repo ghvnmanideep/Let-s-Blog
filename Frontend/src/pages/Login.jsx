@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import GLogin from './GLogin';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
+// import GLogin from './GLogin';
 
 const CLIENT_ID =
   import.meta.env.VITE_GOOGLE_CLIENT_ID ||
@@ -88,11 +88,11 @@ export default function Login() {
           </Link>
         </p>
 
-        <div className="mt-8 flex justify-center">
+        {/* <div className="mt-8 flex justify-center">
           <GoogleOAuthProvider clientId={CLIENT_ID}>
             <GLogin />
           </GoogleOAuthProvider>
-        </div>
+        </div> */}
       </div>
     </div>
   );
