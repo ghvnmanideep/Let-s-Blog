@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://let-sblog.onrender.com',
+  baseURL: import.meta.env.VITE_API_URL || 'https://let-sblog.onrender.com/',
 });
 
 instance.interceptors.request.use(config => {
