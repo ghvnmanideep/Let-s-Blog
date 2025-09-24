@@ -14,7 +14,7 @@ connectDB();
 // ✅ Configure CORS
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://lelsblog.netlify.app"], // allow local + Netlify
+    origin: ["http://localhost:5173"], // allow local + Netlify
     credentials: true,
   })
 );
