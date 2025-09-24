@@ -11,13 +11,14 @@ const PORT = process.env.PORT || 5000;
 // ✅ Connect to MongoDB
 connectDB();
 
-// ✅ Configure CORS
+
 app.use(
   cors({
-    origin: "https://letsblog-hq27.onrender.com", 
+    origin: 'https://letsblog-hq27.onrender.com', 
     credentials: true,
   })
 );
+
 
 // ✅ Parse request bodies
 app.use(express.json({ limit: "20mb" }));
