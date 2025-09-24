@@ -14,7 +14,7 @@ export default function CreateBlog() {
     setError('');
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/blogs`,
+        `${import.meta.env.VITE_API_URL}api/blogs`,
         { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );
