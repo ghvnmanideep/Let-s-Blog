@@ -14,7 +14,7 @@ connectDB();
 // ✅ Configure CORS
 app.use(
   cors({
-    origin: ["https://letsblog-hq27.onrender.com"], // allow local + Netlify
+    origin: "https://letsblog-hq27.onrender.com", 
     credentials: true,
   })
 );
