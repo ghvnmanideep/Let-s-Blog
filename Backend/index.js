@@ -10,16 +10,13 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ Connect to MongoDB
 connectDB();
-
-
-app.use(
-  cors({
-    origin: 'https://letsblog-hq27.onrender.com', 
-    credentials: true,
-  })
-);
-
-
+app.use(cors({
+  origin: 'https://letsblog-hq27.onrender.com', // your deployed frontend URL
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // allow methods your API supports
+  allowedHeaders: ['Content-Type', 'Authorization'],   // allowed headers in requests
+  preflightContinue: false,  // stops after OPTIONS check
+}));
 // ✅ Parse request bodies
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
