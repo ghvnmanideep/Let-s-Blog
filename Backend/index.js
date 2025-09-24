@@ -14,7 +14,7 @@ connectDB();
 // Configure CORS to allow your frontend origin
 app.use(
   cors({
-    origin: "http://localhost:5173", // adjust to your frontend URL/port/environment
+    origin: "https://lelsblog.netlify.app/", // adjust to your frontend URL/port/environment
     credentials: true,
   })
 );
