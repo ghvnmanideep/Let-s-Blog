@@ -13,7 +13,7 @@ export default function EditBlog() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}api/blogs/${id}`)
       .then(res => {
         const blog = res.data;
         setTitle(blog.title);
@@ -31,7 +31,7 @@ export default function EditBlog() {
     }
     try {
       await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/blogs/${id}`,
+        `${import.meta.env.VITE_API_URL}api/blogs/${id}`,
         { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );
