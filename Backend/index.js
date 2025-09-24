@@ -25,6 +25,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cors({ origin: "*", credentials: true }));
 // ✅ Parse request bodies
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
