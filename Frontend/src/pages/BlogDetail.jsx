@@ -10,7 +10,7 @@ export default function BlogDetail() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}api/blogs/${id}`)
       .then(res => {
         setBlog(res.data);
         setLoading(false);
@@ -21,7 +21,7 @@ export default function BlogDetail() {
   const handleDelete = async () => {
     if (!window.confirm('Are you sure you want to delete this blog?')) return;
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}api/blogs/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/');
