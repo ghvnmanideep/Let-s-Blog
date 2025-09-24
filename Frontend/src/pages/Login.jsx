@@ -4,9 +4,9 @@ import axios from 'axios';
 // import { GoogleOAuthProvider } from '@react-oauth/google';
 // import GLogin from './GLogin';
 
-const CLIENT_ID =
-  import.meta.env.VITE_GOOGLE_CLIENT_ID ||
-  '551070839040-qh22gqelveth5aaiqfan1fm43v0tvs7s.apps.googleusercontent.com';
+// const CLIENT_ID =
+//   import.meta.env.VITE_GOOGLE_CLIENT_ID ||
+//   '551070839040-qh22gqelveth5aaiqfan1fm43v0tvs7s.apps.googleusercontent.com';
 
 export default function Login() {
   const [username, setUsername] = useState('');
