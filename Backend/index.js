@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 // ✅ Connect to MongoDB
 connectDB();
 app.use(cors({
-  origin: 'https://letsblog-hq27.onrender.com', // your deployed frontend URL
+  origin: 'https://let-s-blog-kappa.vercel.app', // your deployed frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // allow methods your API supports
   allowedHeaders: ['Content-Type', 'Authorization'],   // allowed headers in requests
