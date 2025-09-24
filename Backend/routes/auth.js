@@ -46,29 +46,29 @@ router.post('/login', async (req, res) => {
 });
 
 // Google login
-router.post('/google-login', async (req, res) => {
-  try {
-    const { tokenId } = req.body;
-    const ticket = await client.verifyIdToken({ idToken: tokenId, audience: process.env.GOOGLE_CLIENT_ID });
-    const payload = ticket.getPayload();
-    const { email, name, email_verified } = payload;
-    if (!email_verified) return res.status(401).json({ message: 'Email not verified' });
+// router.post('/google-login', async (req, res) => {
+//   try {
+//     const { tokenId } = req.body;
+//     const ticket = await client.verifyIdToken({ idToken: tokenId, audience: process.env.GOOGLE_CLIENT_ID });
+//     const payload = ticket.getPayload();
+//     const { email, name, email_verified } = payload;
+//     if (!email_verified) return res.status(401).json({ message: 'Email not verified' });
 
-    let user = await User.findOne({ email });
-    if (!user) {
-      let username = (name || email).replace(/\s+/g, '');
-      let suffix = 1;
-      while (await User.findOne({ username })) username = `${username}${suffix++}`;
-      user = new User({ username, email, password: '' });
-      await user.save();
-    }
+//     let user = await User.findOne({ email });
+//     if (!user) {
+//       let username = (name || email).replace(/\s+/g, '');
+//       let suffix = 1;
+//       while (await User.findOne({ username })) username = `${username}${suffix++}`;
+//       user = new User({ username, email, password: '' });
+//       await user.save();
+//     }
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token, username: user.username, _id: user._id });
-  } catch (err) {
-    console.error(err);
-    res.status(401).json({ message: 'Invalid Google token' });
-  }
-});
+//     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1d' });
+//     res.json({ token, username: user.username, _id: user._id });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(401).json({ message: 'Invalid Google token' });
+//   }
+// });
 
 module.exports = router;
